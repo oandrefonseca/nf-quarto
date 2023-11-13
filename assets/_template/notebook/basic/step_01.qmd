@@ -1,0 +1,41 @@
+---
+title: "R Language 01"
+execute:
+  cache: true
+  freeze: true
+params:
+  project_name: 'Test'
+format:
+  html:
+    toc: true
+    toc-location: right
+    toc-depth: 2
+    code-fold: show
+    code-tools: true
+    default-image-extension: svg
+  ipynb: default
+format-links: [ipynb]
+comments:
+  hypothesis: true
+---
+
+# Preface {.unnumbered}
+
+This is a Quarto book.
+
+```{r}
+
+library(datasets)
+library(ggplot2)
+
+print(format(Sys.Date(), "%c"))
+
+```
+
+```{r}
+
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +
+  theme_classic()
+
+```

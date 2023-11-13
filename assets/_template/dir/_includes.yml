@@ -1,0 +1,16 @@
+website:
+  sidebar:
+    contents:
+      - section: Basic
+        contents:
+          - notebook/basic/*
+      - section: Intermediate
+        contents:
+          - notebook/intermediate/*
+      - section: Advanced
+        contents:
+          - notebook/advanced/*
+      - href: references.qmd
+        text: References
+      - href: about.qmd
+        text: About

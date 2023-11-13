@@ -1,0 +1,9 @@
+[
+  {
+    "objectID": "notebook/basic/step_01.html",
+    "href": "notebook/basic/step_01.html",
+    "title": "R Language 01",
+    "section": "",
+    "text": "Preface\nThis is a Quarto book.\n\n\nCode\nlibrary(datasets)\nlibrary(ggplot2)\n\nprint(format(Sys.Date(), \"%c\"))\n\n\n[1] \"Tue Oct  3 00:00:00 2023\"\n\n\n\n\nCode\nggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +\n  geom_point() +\n  theme_classic()"
+  }
+]

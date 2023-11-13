@@ -1,0 +1,66 @@
+---
+title: "Python Language 03"
+jupyter: py3817
+execute:
+  cache: true
+  freeze: true
+params:
+  project_name: 'Test'
+format:
+  html:
+    toc: true
+    toc-location: right
+    toc-depth: 2
+    code-fold: show
+    code-tools: true
+    default-image-extension: svg
+  ipynb: default
+format-links: [ipynb]
+comments:
+  hypothesis: true
+---
+
+# Preface {.unnumbered}
+
+This is a Quarto book.
+
+```{python}
+#| tags: [parameters]
+
+project_name = "Test"
+
+```
+
+```{python}
+
+print(project_name)
+
+```
+
+```{python}
+
+from sklearn import datasets
+from time import sleep
+from datetime import datetime
+
+iris = datasets.load_iris()
+
+# datetime object containing current date and time
+now = datetime.now()
+dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+print("date and time =", dt_string)
+
+```
+
+```{python}
+
+import matplotlib.pyplot as plt
+
+_, ax = plt.subplots()
+scatter = ax.scatter(iris.data[:, 0], iris.data[:, 1], c=iris.target)
+ax.set(xlabel=iris.feature_names[0], ylabel=iris.feature_names[1])
+_ = ax.legend(
+    scatter.legend_elements()[0], iris.target_names, loc="lower right", title="Classes"
+)
+
+```

@@ -1,0 +1,47 @@
+project:
+  type: website
+  output-dir: report
+  render:
+    - "*.qmd"
+    - "!work/"
+
+execute:
+  cache: true
+  freeze: true
+
+website:
+  title: "BTC scRNA Report"
+  image: btc-logo.png
+
+  repo-url: https://github.com/break-through-cancer/btc-scrna-pipeline
+  repo-branch: master
+  repo-actions: [issue]
+
+  sidebar:
+    logo: btc-logo.jpeg
+    pinned: true
+    align: center
+
+    contents:
+      - href: index.qmd
+        text: Introduction
+      - auto: "step*.qmd"
+      - href: references.qmd
+        text: References
+      - href: about.qmd
+        text: About
+
+  page-footer:
+    right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
+    left: "BTC Data Science Team"
+
+format:
+  html:
+    toc: true
+    fig-width: 8
+    fig-height: 6
+    code-tools: true
+    default-image-extension: svg
+    theme: litera
+  ipynb: default
+format-links: [ipynb]
