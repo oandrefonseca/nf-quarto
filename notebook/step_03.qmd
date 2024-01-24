@@ -3,7 +3,7 @@ title: "Python Language 03"
 jupyter: py3817
 execute:
   cache: true
-  freeze: true
+  freeze: auto
 params:
   project_name: 'Test'
 format:
@@ -16,8 +16,6 @@ format:
     default-image-extension: svg
   ipynb: default
 format-links: [ipynb]
-comments:
-  hypothesis: true
 ---
 
 # Preface {.unnumbered}

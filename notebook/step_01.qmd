@@ -2,7 +2,7 @@
 title: "R Language 01"
 execute:
   cache: true
-  freeze: true
+  freeze: auto
 params:
   project_name: 'Test'
 format:
@@ -15,11 +15,11 @@ format:
     default-image-extension: svg
   ipynb: default
 format-links: [ipynb]
-comments:
-  hypothesis: true
 ---
 
 # Preface {.unnumbered}
+
+## Notebook 01
 
 This is a Quarto book - `r params$project_name`.
 

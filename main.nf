@@ -44,23 +44,23 @@ process SCBTC_ONE {
 
 process SCBTC_TWO {
 
-    publishDir "${params.outdir}", mode: 'copy'
+    publishDir "${params.outdir}/report", mode: 'copy'
+    stageInMode 'copy'
 
     input:
-        path(second_script)
+        path(first_script)
 
     output:
-        path("basic")
+        tuple path(first_script), path("_freeze/step_02")
 
     shell:
         """
-        mkdir -p basic && cp -L ${second_script} basic/${second_script}
-
         quarto create-project --type website
-        quarto render basic/${second_script} -P project_name:Test
-
+        quarto render -P project_name:First
         """
+
 }
+
 
 process SCBTC_THREE {
 
@@ -103,12 +103,14 @@ process SCBTC_RENDER {
 workflow {
 
     first  = SCBTC_ONE(first_script)
-    // second = SCBTC_TWO(second_script)
-    thrid  = SCBTC_THREE(third_script)
+    second = SCBTC_TWO(second_script)
+    // thrid  = SCBTC_THREE(third_script)
 
     // // Mixing
-    report_channels = first.mix(thrid)
+    report_channels = first.mix(second)
         .collect()
+
+    // report_channels = first
 
     report_channels
         .view()
