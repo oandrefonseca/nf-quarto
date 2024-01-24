@@ -20,6 +20,8 @@ format-links: [ipynb]
 
 # Preface {.unnumbered}
 
+## Notebook 03
+
 This is a Quarto book.
 
 ```{python}
