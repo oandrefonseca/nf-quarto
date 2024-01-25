@@ -1,12 +1,8 @@
 project:
   type: website
   output-dir: report
-  render:
-    - "*.qmd"
-    - "!work/"
 
 execute:
-  cache: true
   freeze: true
 
 website:
@@ -21,15 +17,9 @@ website:
     logo: btc-logo.jpeg
     pinned: true
     align: center
-
     contents:
-      - href: index.qmd
-        text: Introduction
-      - auto: "step*.qmd"
-      - href: references.qmd
-        text: References
-      - href: about.qmd
-        text: About
+      - step_01.qmd
+      - step_02.qmd
 
   page-footer:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
@@ -44,4 +34,5 @@ format:
     default-image-extension: svg
     theme: litera
   ipynb: default
+
 format-links: [ipynb]

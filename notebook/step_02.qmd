@@ -28,7 +28,8 @@ This is a Quarto book.
 library(datasets)
 library(ggplot2)
 
-print(format(Sys.time(), "%c"))
+Sys.sleep(30)
+print(Sys.time())
 
 ```
 

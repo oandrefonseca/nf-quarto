@@ -21,14 +21,15 @@ format-links: [ipynb]
 
 ## Notebook 01
 
-This is a Quarto book - `r params$project_name`.
+This is a Quarto book
 
 ```{r}
 
 library(datasets)
 library(ggplot2)
 
-print(format(Sys.time(), "%c"))
+Sys.sleep(15)
+print(Sys.time())
 
 ```
 

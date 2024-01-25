@@ -1,14 +1,18 @@
 process QUARTO_RENDER_PROJECT {
 
+    tag "Creating final report"
+    publishDir "${params.outdir}/${params.project_name}", mode: 'copy'
+
     input:
-        path(report_template)
-        path(report_channels)
+        path(template)
+        path(qmd)
+        path(cache), stageAs: '_freeze/*'
 
     output:
         path("report"), emit: project_folder
 
     shell:
         """
-        quarto render --use-freezer --cache
+        quarto render .
         """
 }

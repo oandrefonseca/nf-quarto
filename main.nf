@@ -6,43 +6,50 @@ include {  QUARTO_RENDER_PAGEB     } from './modules/moduleB/main'
 include {  QUARTO_RENDER_PAGEC     } from './modules/moduleC/main'
 include {  QUARTO_RENDER_PROJECT   } from './modules/report/main'
 
-first_script     = "${workflow.projectDir}/notebook/step_01.qmd"
-second_script    = "${workflow.projectDir}/notebook/step_02.qmd"
-third_script     = "${workflow.projectDir}/notebook/step_03.qmd"
-
 workflow {
 
-    //
+    // Importing notebook
+    ch_notebookA   = Channel.fromPath(params.notebookA, checkIfExists: true)
+    ch_notebookB   = Channel.fromPath(params.notebookB, checkIfExists: true)
+    // ch_notebookC   = Channel.fromPath(params.notebookC, checkIfExists: true)
+
+    ch_template    = Channel.fromPath(params.template, checkIfExists: true)
     ch_page_config = Channel.fromPath(params.page_config, checkIfExists: true)
         .collect()
 
     // Passing notebooks for respective functions
     first  = QUARTO_RENDER_PAGEA(
-        first_script,
+        ch_notebookA,
         ch_page_config
     )
 
     second = QUARTO_RENDER_PAGEB(
-        second_script,
+        ch_notebookB,
         ch_page_config
     )
 
     // thrid  = QUARTO_RENDER_PAGEC(third_script)
 
+    // All notebooks
+    ch_qmd = ch_notebookA.mix(ch_notebookB)
+        .collect()
+
     // Creates a single channel with all cache/freeze folders
-    report_channels = first.mix(second)
+    ch_cache = first.mix(second)
         .collect()
 
-    report_channels
-        .view()
-
-    report_template = Channel.fromPath("${workflow.projectDir}/assets/template/*")
-    report_template = report_template
+    ch_template = ch_template
         .collect()
+
+    //
+    ch_cache.view()
+    ch_page_config.view()
+    ch_qmd.view()
 
     QUARTO_RENDER_PROJECT(
-        report_template,
-        report_channels
+        ch_page_config,
+        ch_qmd,
+        ch_cache
     )
 
 }
