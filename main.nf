@@ -18,7 +18,7 @@ workflow {
         .collect()
 
     // Passing notebooks for respective functions
-    first  = QUARTO_RENDER_PAGEA(
+    first = QUARTO_RENDER_PAGEA(
         ch_notebookA,
         ch_page_config
     )
@@ -28,12 +28,18 @@ workflow {
         ch_page_config
     )
 
-    third = QUARTO_RENDER_PAGEC(
-        ch_notebookC,
-        ch_page_config
-    )
+    // Adding conditions for skipping notebooks/analysis
+    (ch_notebookC, third) = params.skip_python
+        ? [Channel.empty(), Channel.empty()]
+        : [
+            ch_notebookC,
+            QUARTO_RENDER_PAGEC(
+                ch_notebookC,
+                ch_page_config
+                )
+            ]
 
-    // All notebooks
+    // Gathering all notebooks
     ch_qmd = ch_notebookA.mix(ch_notebookB, ch_notebookC)
         .collect()
 
@@ -41,10 +47,11 @@ workflow {
     ch_cache = first.mix(second, third)
         .collect()
 
+    // Load SCRATCH BTC template
     ch_template = ch_template
         .collect()
 
-    //
+    // Inspecting channels content
     ch_cache.view()
     ch_page_config.view()
     ch_qmd.view()

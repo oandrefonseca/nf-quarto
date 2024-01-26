@@ -31,7 +31,7 @@ project_name = "Test"
 
 This is a Quarto book.
 ```{python}
-#
+
 print(f"The customized message is: {project_name}")
 
 ```
