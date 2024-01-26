@@ -37,8 +37,9 @@ workflow {
         ch_notebookA,
         ch_page_config,
         params.project_name,
-        params.paramA
+        params.paramA // Question 1: Is this the best way to map parameters to process?
     )
+
 
     second = QUARTO_RENDER_PAGEB(
         ch_notebookB,
@@ -48,7 +49,7 @@ workflow {
     )
 
     // Adding conditions for skipping notebooks/analysis
-    (ch_notebookC, third) = params.skip_python
+    (ch_notebookC, third) = params.skip_python // Question 2: Do we have an alternative for it?
         ? [Channel.empty(), Channel.empty()]
         : [
             ch_notebookC,
