@@ -40,3 +40,10 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
   theme_classic()
 
 ```
+
+
+```{r}
+
+saveRDS(iris, file = "iris.RDS")
+
+```

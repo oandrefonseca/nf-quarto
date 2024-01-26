@@ -3,7 +3,7 @@ project:
   output-dir: report
 
 execute:
-  freeze: true
+  freeze: auto
 
 website:
   title: "BTC scRNA Report"
@@ -17,9 +17,15 @@ website:
     logo: btc-logo.jpeg
     pinned: true
     align: center
+
     contents:
-      - step_01.qmd
-      - step_02.qmd
+      - href: index.qmd
+        text: Introduction
+      - auto: "step*.qmd"
+      - href: references.qmd
+        text: References
+      - href: about.qmd
+        text: About
 
   page-footer:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."

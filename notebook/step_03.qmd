@@ -1,6 +1,6 @@
 ---
 title: "Python Language 03"
-jupyter: py3817
+jupyter: python3
 execute:
   cache: true
   freeze: auto

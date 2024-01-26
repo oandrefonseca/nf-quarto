@@ -11,7 +11,7 @@ workflow {
     // Importing notebook
     ch_notebookA   = Channel.fromPath(params.notebookA, checkIfExists: true)
     ch_notebookB   = Channel.fromPath(params.notebookB, checkIfExists: true)
-    // ch_notebookC   = Channel.fromPath(params.notebookC, checkIfExists: true)
+    ch_notebookC   = Channel.fromPath(params.notebookC, checkIfExists: true)
 
     ch_template    = Channel.fromPath(params.template, checkIfExists: true)
     ch_page_config = Channel.fromPath(params.page_config, checkIfExists: true)
@@ -28,14 +28,17 @@ workflow {
         ch_page_config
     )
 
-    // thrid  = QUARTO_RENDER_PAGEC(third_script)
+    third = QUARTO_RENDER_PAGEC(
+        ch_notebookC,
+        ch_page_config
+    )
 
     // All notebooks
-    ch_qmd = ch_notebookA.mix(ch_notebookB)
+    ch_qmd = ch_notebookA.mix(ch_notebookB, ch_notebookC)
         .collect()
 
     // Creates a single channel with all cache/freeze folders
-    ch_cache = first.mix(second)
+    ch_cache = first.mix(second, third)
         .collect()
 
     ch_template = ch_template
@@ -47,7 +50,7 @@ workflow {
     ch_qmd.view()
 
     QUARTO_RENDER_PROJECT(
-        ch_page_config,
+        ch_template,
         ch_qmd,
         ch_cache
     )

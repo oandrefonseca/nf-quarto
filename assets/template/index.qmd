@@ -2,7 +2,7 @@
 title: "Summary"
 params:
   project_name: 'Test'
-format: 
+format:
   html:
     toc: true
     toc-location: right
