@@ -4,8 +4,6 @@ jupyter: python3
 execute:
   cache: true
   freeze: auto
-params:
-  project_name: 'Test'
 format:
   html:
     toc: true
@@ -22,18 +20,19 @@ format-links: [ipynb]
 
 ## Notebook 03
 
-This is a Quarto book.
-
 ```{python}
+#| echo: false
 #| tags: [parameters]
 
+# quarto render step_03.qmd -P project_name:Qlqr
 project_name = "Test"
 
 ```
 
+This is a Quarto book.
 ```{python}
-
-print(project_name)
+#
+print(f"The customized message is: {project_name}")
 
 ```
 

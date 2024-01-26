@@ -26,6 +26,7 @@ RUN apt-get install -y \
 # Install Python packages for data science
 RUN python3 -m pip install --no-cache-dir numpy pandas scikit-learn matplotlib seaborn jupyter
 RUN python3 -m pip install --no-cache-dir jupyter-cache
+RUN python3 -m pip install --no-cache-dir papermill
 
 # Set the working directory
 WORKDIR /data
