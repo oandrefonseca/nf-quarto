@@ -1,5 +1,7 @@
-.nextflow
+.nextflow/
 work/
 output/
 
+*_cache
+*_freeze
 .nextflow.log*
