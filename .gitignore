@@ -1,6 +1,7 @@
 .nextflow/
 work/
 output/
+notebook/.jupyter_cache
 
 *_cache
 *_freeze

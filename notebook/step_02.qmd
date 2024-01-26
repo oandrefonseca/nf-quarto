@@ -5,6 +5,7 @@ execute:
   freeze: auto
 params:
   project_name: 'Test'
+  paramB: 'paramB'
 format:
   html:
     toc: true
@@ -19,7 +20,7 @@ format-links: [ipynb]
 
 # Preface {.unnumbered}
 
-## Notebook 02
+## Notebook 02 - `r params$project_name`
 
 This is a Quarto book.
 
@@ -30,6 +31,12 @@ library(ggplot2)
 
 Sys.sleep(30)
 print(Sys.time())
+
+```
+
+```{r}
+
+print(params$paramB)
 
 ```
 

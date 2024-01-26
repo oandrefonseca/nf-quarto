@@ -6,6 +6,21 @@ include {  QUARTO_RENDER_PAGEB     } from './modules/moduleB/main'
 include {  QUARTO_RENDER_PAGEC     } from './modules/moduleC/main'
 include {  QUARTO_RENDER_PROJECT   } from './modules/report/main'
 
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Check mandatory parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+// def checkPathParamList = [params.paramA, params.paramB, params.paramC]
+// for (param in checkPathParamList) if (param) file(param, checkIfExists: true)
+
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    RUN MAIN WORKFLOW
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
 workflow {
 
     // Importing notebook
@@ -20,12 +35,16 @@ workflow {
     // Passing notebooks for respective functions
     first = QUARTO_RENDER_PAGEA(
         ch_notebookA,
-        ch_page_config
+        ch_page_config,
+        params.project_name,
+        params.paramA
     )
 
     second = QUARTO_RENDER_PAGEB(
         ch_notebookB,
-        ch_page_config
+        ch_page_config,
+        params.project_name,
+        params.paramB
     )
 
     // Adding conditions for skipping notebooks/analysis
@@ -35,9 +54,11 @@ workflow {
             ch_notebookC,
             QUARTO_RENDER_PAGEC(
                 ch_notebookC,
-                ch_page_config
-                )
-            ]
+                ch_page_config,
+                params.project_name,
+                params.paramC
+            )
+        ]
 
     // Gathering all notebooks
     ch_qmd = ch_notebookA.mix(ch_notebookB, ch_notebookC)
@@ -47,7 +68,7 @@ workflow {
     ch_cache = first.mix(second, third)
         .collect()
 
-    // Load SCRATCH BTC template
+    // Load SCRATCH/BTC template
     ch_template = ch_template
         .collect()
 
@@ -56,6 +77,7 @@ workflow {
     ch_page_config.view()
     ch_qmd.view()
 
+    // Gathering intermediate pages and rendering the project
     QUARTO_RENDER_PROJECT(
         ch_template,
         ch_qmd,

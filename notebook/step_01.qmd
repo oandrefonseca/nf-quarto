@@ -5,6 +5,7 @@ execute:
   freeze: auto
 params:
   project_name: 'Test'
+  paramA: 'paramA'
 format:
   html:
     toc: true
@@ -19,7 +20,7 @@ format-links: [ipynb]
 
 # Preface {.unnumbered}
 
-## Notebook 01
+## Notebook 01 - `r params$project_name`
 
 This is a Quarto book
 
@@ -38,6 +39,12 @@ print(Sys.time())
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
   geom_point() +
   theme_classic()
+
+```
+
+```{r}
+
+print(params$paramA)
 
 ```
 
