@@ -10,6 +10,7 @@ testing*
 # Dev
 Project/
 data/
+output/
 
 # Quarto
 notebook_*_files/

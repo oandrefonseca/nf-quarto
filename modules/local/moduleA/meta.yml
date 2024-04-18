@@ -1,0 +1,52 @@
+name: moduleA
+description: A description here
+keywords:
+  - keywords1
+  - keywords2
+  - keywords3
+tools:
+  - package: To-do
+      description: To-do
+      homepage: To-do
+      documentation: To-do
+      doi: To-do
+      licence: To-do
+input:
+  - input:
+      type: type
+      description: |
+        Description
+  - notebook:
+      type: type
+      description: |
+        Description
+      pattern: "*.qmd"
+  - config:
+      type: type
+      description: |
+        Description
+  - project_name:
+      type: type
+      description: |
+        Description
+  - paramA:
+      type: type
+      description: |
+        Description
+output:
+  - output1:
+      type: type
+      description: |
+        Description
+  - output2:
+      type: type
+      description: |
+        Description
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@oandrefonseca"
+maintainers:
+  - "@oandrefonseca"

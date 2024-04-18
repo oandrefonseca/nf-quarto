@@ -3,6 +3,8 @@ process QUARTO_RENDER_PAGEB {
     tag "Performing analysis moduleB"
 
     input:
+        path(input)
+        path(notebook)
         path(config)
 
         val(project_name)
@@ -18,11 +20,10 @@ process QUARTO_RENDER_PAGEB {
         def project_name = project_name ? "-P project_name:${project_name}" : ""
         def paramB       = paramB       ? "-P paramB:${paramB}" : ""
         """
-        cat moduleB.qmd > out
+        quarto render ${notebook} ${project_name} ${paramB}
         """
     stub:
         """
-        quarto render moduleB.qmd ${project_name} ${paramB}
         """
 
 }

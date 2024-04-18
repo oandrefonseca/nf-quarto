@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl = 2
 
-include { NFQUART_EXAMPLE } from './subworkflow/local/example.nf'
+include { NFQUARTO_EXAMPLE } from './subworkflow/local/example.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -21,17 +21,15 @@ include { NFQUART_EXAMPLE } from './subworkflow/local/example.nf'
 workflow {
 
     // Description
-    ch_inputA      = Channel.empty()
-    ch_inputB      = Channel.empty()
+    ch_input       = Channel.fromPath(params.input, checkIfExists: true)
 
     // Description
     ch_template    = Channel.fromPath(params.template, checkIfExists: true)
     ch_page_config = Channel.fromPath(params.page_config, checkIfExists: true)
         .collect()
 
-    NFQUART_EXAMPLE(
-        ch_inputA,
-        ch_inputB
+    NFQUARTO_EXAMPLE(
+        ch_input
     )
 
 }

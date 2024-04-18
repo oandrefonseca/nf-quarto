@@ -3,6 +3,8 @@ process QUARTO_RENDER_PAGEC {
     tag "Performing analysis moduleC"
 
     input:
+        path(input)
+        path(notebook)
         path(config)
 
         val(project_name)
@@ -18,7 +20,7 @@ process QUARTO_RENDER_PAGEC {
         def project_name = project_name ? "-P project_name:${project_name}" : ""
         def paramC       = paramC       ? "-P paramC:${paramC}" : ""
         """
-        quarto render moduleC.qmd ${project_name} ${paramC}
+        quarto render ${notebook} ${project_name} ${paramC}
         """
     stub:
         """

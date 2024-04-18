@@ -1,15 +1,14 @@
 #!/usr/bin/env nextflow
 
-include {  QUARTO_RENDER_PAGEA     } from './modules/local/moduleA/main'
-include {  QUARTO_RENDER_PAGEB     } from './modules/local/moduleB/main'
-include {  QUARTO_RENDER_PAGEC     } from './modules/local/moduleC/main'
-include {  QUARTO_RENDER_PROJECT   } from './modules/local/report/main'
+include {  QUARTO_RENDER_PAGEA     } from '../../modules/local/moduleA/main.nf'
+include {  QUARTO_RENDER_PAGEB     } from '../../modules/local/moduleB/main.nf'
+include {  QUARTO_RENDER_PAGEC     } from '../../modules/local/moduleC/main.nf'
+include {  QUARTO_RENDER_PROJECT   } from '../../modules/local/report/main.nf'
 
-workflow NFQUART_EXAMPLE {
+workflow NFQUARTO_EXAMPLE {
 
     take:
-        ch_inputA          // channel: []
-        ch_inputB          // channel: []
+        ch_input          // channel: []
 
     main:
 
@@ -27,6 +26,7 @@ workflow NFQUART_EXAMPLE {
 
         // Passing notebooks for respective functions
         first = QUARTO_RENDER_PAGEA(
+            ch_input,
             ch_notebookA,
             ch_page_config,
             params.project_name,
@@ -34,18 +34,20 @@ workflow NFQUART_EXAMPLE {
         )
 
         second = QUARTO_RENDER_PAGEB(
+            ch_input,
             ch_notebookB,
             ch_page_config,
             params.project_name,
             params.paramB
         )
 
-        Adding conditions for skipping notebooks/analysis
+        // Adding conditions for skipping notebooks/analysis
         (ch_notebookC, third) = params.skip_python
             ? [Channel.empty(), Channel.empty()]
             : [
                 ch_notebookC,
                 QUARTO_RENDER_PAGEC(
+                    ch_input,
                     ch_notebookC,
                     ch_page_config,
                     params.project_name,
