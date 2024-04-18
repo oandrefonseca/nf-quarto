@@ -1,0 +1,13 @@
+{
+    "name": "ubuntu",
+    "image": "ubuntu:latest",
+
+    // Configure tool-specific properties.
+    "customizations": {
+        "vscode": {
+            "extensions": ["ms-python.python", "ms-python.vscode-pylance", "nf-core.nf-core-extensionpack"]
+        }
+    },
+    "forwardPorts": [3000]
+}
+

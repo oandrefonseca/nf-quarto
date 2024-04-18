@@ -1,8 +1,28 @@
-.nextflow/
+# Nextflow
+.nextflow*
 work/
-output/
-notebook/.jupyter_cache
+testing/
+testing*
+*.pyc
+*.ipynb
+.DS_Store
 
-*_cache
-*_freeze
-.nextflow.log*
+# Dev
+Project/
+data/
+
+# Quarto
+notebook_*_files/
+notebook_*_cache/
+notebook_*.html
+
+# Jupyter Notebook
+.ipynb_checkpoints
+.jupyter_cache/
+*.pyc
+*.ipynb
+
+# R environments
+.Rproj.user
+.Rproj
+.Rhistory

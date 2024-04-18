@@ -1,16 +1,15 @@
 process QUARTO_RENDER_PAGEB {
 
-    tag "Performing analysis ${notebook.baseName}"
+    tag "Performing analysis moduleB"
 
     input:
-        path(notebook)
         path(config)
 
         val(project_name)
         val(paramB)
 
     output:
-        path("_freeze/${notebook.baseName}"),   emit: cache
+        path("_freeze/moduleB"),   emit: cache
 
     when:
         task.ext.when == null || task.ext.when
@@ -19,10 +18,11 @@ process QUARTO_RENDER_PAGEB {
         def project_name = project_name ? "-P project_name:${project_name}" : ""
         def paramB       = paramB       ? "-P paramB:${paramB}" : ""
         """
-        quarto render ${notebook} ${project_name} ${paramB}
+        cat moduleB.qmd > out
         """
     stub:
         """
+        quarto render moduleB.qmd ${project_name} ${paramB}
         """
 
 }
