@@ -18,7 +18,7 @@ Welcome to `nf-quarto`, a robust and dynamic template that seamlessly integrates
 
 ## Quick Start Guide
 
-### Building the Docker Image
+### Building the Docker image
 
 ```bash
 docker build -t nf-quarto -f Dockerfile .
@@ -30,7 +30,7 @@ docker build -t nf-quarto -f Dockerfile .
 nextflow run main.nf -resume
 ```
 
-### Skipping Modules
+### Skipping modules
 
 Avoid rendering specific modules by adjusting the run command as shown below:
 
@@ -38,11 +38,11 @@ Avoid rendering specific modules by adjusting the run command as shown below:
 nextflow run main.nf --skip_python true -resume
 ```
 
-## Leveraging and Customizing the Template for Your Project
+## How to use and customize the template
 
 If you want to use this template for your project without linking back to the original repository, you can clone it and then sever the link to the original remote:
 
-1. **Clone the Repository**:
+1. **Clone the repository**:
    Clone `nf-quarto` to your local machine:
 
 ```bash
@@ -50,14 +50,14 @@ git clone https://github.com/yourusername/nf-quarto.git
 cd nf-quarto
 ```
 
-2. **Remove the Original Remote**:
+2. **Remove the original remote**:
    Remove the original `origin` to disconnect from the source repository:
 
 ```bash
 git remote remove origin
 ```
 
-3. **Set Up a New Remote (Optional)**:
+3. **Set up a new remote (optional)**:
    If you have a new repository where you want to push changes, add it as the new `origin`:
 
  ```bash
@@ -65,15 +65,15 @@ git remote remove origin
  git push -u origin master  # Replace 'master' with your branch if different
  ```
 
-### Assets and Styling
+### Assets and styling
 
 The `assets` folder is essential for the visual presentation of the Quarto reports. It contains all necessary stylesheets and resources for the Quarto website rendering. 
 
-### Logo Customization
+### Logo customization
 
 Included in the `assets` folder is the `logotype.png`. This default logo is meant to be replaced with your own to personalize the reports. Simply prepare your custom logo in PNG format, rename it to `logotype.png`, and replace the existing file in the `assets` folder to reflect your project's identity.
 
-## Configuration and Automation
+## Configuration and automation
 
 ### GitHub Actions
 
@@ -89,7 +89,7 @@ To ensure the GitHub Actions workflow can push the Docker image to Docker Hub, y
 
 For instructions on how to set up repository secrets, refer to the [official GitHub documentation](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
-### Docker Configuration
+### Docker configuration
 
 Our Docker configuration is stored within the `Docker` directory of the repository. The Dockerfile `nf-quarto.Dockerfile` is located at `docker/nf-quarto.Dockerfile`.
 
