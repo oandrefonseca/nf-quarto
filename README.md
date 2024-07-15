@@ -1,6 +1,10 @@
-# nf-quarto
+<!-- badges: start -->
 
 [![DOI](https://zenodo.org/badge/718295582.svg)](https://zenodo.org/doi/10.5281/zenodo.12746772)
+
+<!-- badges: end -->
+
+# nf-quarto <a href=""><img src="assets/template/logotype.png" align="right" height="138" /></a>
 
 Welcome to `nf-quarto`, a robust and dynamic template that seamlessly integrates Nextflow pipelines with Quarto notebooks. Designed to enhance reproducibility and ease of use, this template is ideal for researchers and developers seeking to combine the power of workflow automation with the elegance of literate programming.
 
@@ -20,19 +24,29 @@ Welcome to `nf-quarto`, a robust and dynamic template that seamlessly integrates
 docker build -t nf-quarto -f Dockerfile .
 ```
 
-### Running the Pipeline with Basic Settings
+### Running the Pipeline with standard settings
 
 ```bash
 nextflow run main.nf -resume
 ```
 
-### Customizing Execution
+### Skipping modules
 
 Avoid rendering specific modules by adjusting the run command as shown below:
 
 ```bash
 nextflow run main.nf --skip_python true -resume
 ```
+
+## Customizing Your Project
+
+### Assets and Styling
+
+The `assets` folder is essential for the visual presentation of the Quarto reports. It contains all necessary stylesheets and resources for the Quarto website rendering. 
+
+### Logo Customization
+
+Included in the `assets` folder is the `logotype.png`. This default logo is meant to be replaced with your own to personalize the reports. Simply prepare your custom logo in PNG format, rename it to `logotype.png`, and replace the existing file in the `assets` folder to reflect your project's identity.
 
 ## Configuration and Automation
 
@@ -58,7 +72,7 @@ Our Docker configuration is stored within the Docker directory of the repository
 
 ## Citation
 
-If you utilize this repository in your research, please consider citing it. Your support helps us to continue improving our work and assisting the scientific community. Registered on Zenodo:
+If you utilize this repository in your research, please consider citing it. Your support helps us to continue improving our work and assisting the scientific community. Registered on Zenodo: 
 
 [![DOI](https://zenodo.org/badge/718295582.svg)](https://zenodo.org/doi/10.5281/zenodo.12746772)
 
