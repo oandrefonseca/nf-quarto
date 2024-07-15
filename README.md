@@ -34,9 +34,27 @@ Avoid rendering specific modules by adjusting the run command as shown below:
 nextflow run main.nf --skip_python true -resume
 ```
 
-## Settings
+## Configuration and Automation
 
-Detailed configuration settings can be tailored to fit your specific requirements. Explore the repository's documentation to adjust pipeline parameters, manage dependencies, and more.
+### GitHub Actions
+
+The repository is configured to use GitHub Actions to automatically build and publish the Docker image whenever changes are pushed to the `main` branch or when new tags that match the pattern `v*.*.*` are created. The action specifically tracks changes to the Dockerfile and the action's workflow file:
+
+- **Dockerfile Path**: `docker/nf-quarto.Dockerfile`
+- **Workflow File Path**: `.github/workflows/docker-basic-publish.yml`
+
+#### Steps to Set Up Secrets:
+
+To ensure the GitHub Actions workflow can push the Docker image to Docker Hub, you need to set up the following secrets in your repository:
+
+1. **DOCKERHUB_USERNAME**: Your Docker Hub username.
+2. **DOCKERHUB_PASSWORD**: Your Docker Hub password or access token.
+
+For instructions on how to set up repository secrets, refer to the official GitHub documentation.
+
+### Docker Configuration
+
+Our Docker configuration is stored within the Docker directory of the repository. The Dockerfile nf-quarto.Dockerfile is located at docker/nf-quarto.Dockerfile.
 
 ## Citation
 
@@ -47,7 +65,3 @@ If you utilize this repository in your research, please consider citing it. Your
 ## License
 
 This project is available under the GNU General Public License v3.0. See the [LICENSE](./LICENSE) file for more details.
-
----
-
-This revised README adds more structure, utilizes markdown more effectively for better visual appeal, and includes sections that can be further expanded based on additional details you might want to include about configuration settings or other advanced usage.
