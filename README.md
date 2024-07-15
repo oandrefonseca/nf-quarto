@@ -1,6 +1,6 @@
 # nf-quarto
 
-![DOI](https://zenodo.org/badge/718295582.svg)](https://zenodo.org/doi/10.5281/zenodo.12746772)
+[![DOI](https://zenodo.org/badge/718295582.svg)](https://zenodo.org/doi/10.5281/zenodo.12746772)
 
 Welcome to `nf-quarto`, a robust and dynamic template that seamlessly integrates Nextflow pipelines with Quarto notebooks. Designed to enhance reproducibility and ease of use, this template is ideal for researchers and developers seeking to combine the power of workflow automation with the elegance of literate programming.
 
